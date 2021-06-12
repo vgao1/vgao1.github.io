@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin-left: 10%;
+      margin-right: 10%;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: white;
+      border-top: 4px double #e06d60;
+      border-bottom: 4px double #e06d60;
+      width: 100%;
+    }
+
+    li {
+      float: left;
+      width: 33.33%;
+    }
+
+    li a {
+      display: block;
+      color: black;
+      text-align: center;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      text-decoration: none;
+    }
+
+    a:hover {
+      background-color: salmon;
+      color: white;
+    }
+
+    .description {
+      font-size: 18px;
+      color: black;
+      font-family: Arial, Helvetica, sans-serif;
+      margin-left: 5%;
+      margin-right: 5%;
+    }
+
+    h1 {
+      color: #d63321;
+      text-align: center;
+      font-size: 24px;
+    }
+
+    video {
+      object-fit: contain;
+    }
+
+    .row {
+      padding: 0px;
+      margin: 0px;
+    }
+
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .video {
+      position: relative;
+      width: 100%;
+      height: 400px;
+    }
+
+    .column {
+      float: left;
+      width: 55%;
+      padding: 0px;
+      margin-right: 2%;
+    }
+
+    .column2 {
+      float: left;
+      width: 43%;
+      padding: 0px;
+      border-left: 5px double #e06d60;
+      height: 400px;
+    }
+
+    .start_btn {
+      background-color: white;
+      color: black;
+      display: flex;
+      border: 5px solid #e06d60;
+      padding: 15px 32px;
+      margin-left: 25%;
+      margin-right: 25%;
+      text-align: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .cover_pics {
+      display: inline-block;
+    }
+
+    #banner {
+      display: block;
+    }
+
+    #home {
+      width: 700px;
+      height: 250px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="banner">
+    <div class="cover_pics">
+      <img src="static/Images/gwn.jpg" />
+    </div>
+    <div class="cover_pics">
+      <img id="home" src="static/Images/home_pg_cover.JPG" />
+    </div>
+  </div>
+  <ul>
+    <li><a class="active" href="home.html">Home</a></li>
+    <li><a href="editor.html">Promo Pic Editor</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <br>
+
+  <div class="row">
+    <div class="column">
+      <iframe class="video" src="https://www.youtube.com/embed/eofzhJZSmqs" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+    <div class="column2">
+      <h1> Welcome!</h1>
+      <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consequat venenatis odio,
+        vestibulum sodales felis. Duis ac velit mi. Curabitur leo orci, tempus sed nisi at, rhoncus iaculis nibh.
+        Aliquam eu mattis nibh. Pellentesque accumsan convallis eleifend. Curabitur vestibulum et lectus ac dictum.
+        Phasellus imperdiet lectus at leo imperdiet, ut rutrum arcu convallis. Cras a enim feugiat, malesuada magna at,
+        vehicula metus.</p>
+      <a href="editor.html" class="start_btn">Get Started</a>
+    </div>
+  </div>
+</body>
+
+</html>
