@@ -541,7 +541,7 @@
         <br>
         <br>
         <a id="download" download="promo.png">
-            <button id="dn_btn" type="button" onClick="download()">Download</button>
+            <button id="dn_btn" type="button" onClick="download1()">Download</button>
         </a>
     </div>
     <script>
@@ -768,7 +768,7 @@
             document.getElementById("dn_btn").style.backgroundColor = "rgb(253, 184, 180)";
         });
         
-        function download() {
+        function download1() {
             var download = document.getElementById("download");
             var image = document.getElementById("canvas").toDataURL("image/png").replace("image/png", "image/octet-stream");
             download.setAttribute("href", image);
