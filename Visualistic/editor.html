@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: white;
+            border-top: 4px double #e06d60;
+            border-bottom: 4px double #e06d60;
+            width: 100%;
+        }
+
+        li {
+            float: left;
+            width: 33.33%;
+        }
+
+        li a {
+            display: block;
+            color: black;
+            text-align: center;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-decoration: none;
+        }
+
+        a:hover {
+            background-color: salmon;
+            color: white;
+        }
+
+        .collapsible,
+        .sub-collapsible,
+        .sub-topic {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            width: 100%;
+        }
+
+        .heading {
+            background-color: salmon;
+            color: white;
+            font-weight: bold;
+            font-size: 25px;
+            text-align: left;
+            text-indent: 20px;
+            padding: 15px;
+            border-bottom: 2px solid rgb(216, 212, 152);
+        }
+
+        .indent_space {
+            text-indent: 20px;
+        }
+
+        .subheading {
+            background-color: rgb(253, 184, 180);
+            color: black;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: right;
+            padding: 10px;
+            padding-right: 35%;
+            border-bottom: 2px solid lightgray;
+        }
+
+        .content {
+            display: none;
+            overflow: hidden;
+            background-color: white;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        #back {
+            background-color: white;
+            color: black;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            width: 20%;
+        }
+
+        .shrink_genre {
+            width: 80%;
+            font-size: 18px;
+            text-indent: 10px;
+        }
+
+        .column {
+            float: left;
+        }
+
+        .left {
+            width: 33.33%;
+        }
+
+        .right {
+            width: 66.67%;
+        }
+
+        #canvas {
+            width: 100%;
+            border: 5px solid black;
+        }
+
+        .img-btn {
+            width: 100%;
+            height: 75px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: none;
+            border-bottom: 2px solid black;
+            font-size: 0;
+            cursor: pointer;
+        }
+
+        .background_input,
+        .title_input,
+        .author_input {
+            border-left: 2px solid salmon;
+            font-size: 18px;
+            font-family: Arial;
+            text-align: left;
+            text-indent: 20px;
+            padding: 15px;
+            color: black;
+        }
+
+        #title_size,
+        #title_text,
+        #author_size,
+        #author_text {
+            width: 70%;
+            font-size: 20px;
+        }
+
+        #title_style,
+        #title_style option,
+        #author_style,
+        #author_style option {
+            margin-left: 20px;
+            font-size: 20px;
+            width: 83%;
+        }
+
+        .cover_pics {
+            display: inline-block;
+        }
+
+        #banner {
+            display: block;
+        }
+
+        #home {
+            width: 700px;
+            height: 250px;
+        }
+
+        #download {
+            background-color: rgb(253, 184, 180);
+            color: black;
+            height: 50px;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        #dn_btn {
+            outline: none;
+            border: none;
+            background-color: rgb(253, 184, 180);
+            font-weight: bold;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="banner">
+        <div class="cover_pics">
+            <img src="static/Images/gwn.jpg" />
+        </div>
+        <div class="cover_pics">
+            <img id="home" src="static/Images/home_pg_cover.JPG" />
+        </div>
+    </div>
+    <ul>
+        <li><a class="active" href="home.html">Home</a></li>
+        <li><a href="editor.html">Promo Pic Editor</a></li>
+        <li><a href="#about">About</a></li>
+    </ul>
+
+    <div class="column left">
+        <div class="section">
+            <button type="button" class="collapsible heading" id="bg_heading">
+                Background
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white"
+                    class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white"
+                    class="bi bi-caret-up-fill hide" viewBox="0 0 16 16">
+                    <path
+                        d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                </svg>
+            </button>
+            <div class="content background_input">
+                Background Color:
+                <input type="color" id="bg" name="bg" value="#FFFFFF" onchange="draw()">
+            </div>
+        </div>
+        <div class="section">
+            <button type="button" class="collapsible heading" id="title_heading">
+                Title
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white"
+                    class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white"
+                    class="bi bi-caret-up-fill hide" viewBox="0 0 16 16">
+                    <path
+                        d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                </svg>
+            </button>
+            <div class="content title_input">
+                Color:
+                <input type="color" id="font_color" name="font_color" value="#000000" onchange="draw()">
+                <br>
+                <p class="indent_space">Font:
+                    <br>
+                    <select name="title_style" id="title_style" onchange="draw()" size="3">
+                        <option value="Arial" selected>Arial</option>
+                    </select>
+                </p>
+
+                <p>Size: <input type="number" id="title_size" name="title_size" value="48" onchange="draw()">
+                </p>
+                <p>Text: <input type="text" id="title_text" name="title_text" onchange="draw()"></p>
+
+            </div>
+        </div>
+
+        <div class="section">
+            <button type="button" class="collapsible heading" id="author_heading">
+                Author
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white"
+                    class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white"
+                    class="bi bi-caret-up-fill hide" viewBox="0 0 16 16">
+                    <path
+                        d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                </svg>
+            </button>
+            <div class="content author_input">
+                Color:
+                <input type="color" id="name_color" name="name_color" value="#000000" onchange="draw()">
+                <br>
+                <p class="indent_space">Font:
+                    <br>
+                    <select name="author_style" id="author_style" onchange="draw()" size="3">
+                        <option value="Arial" selected>Arial</option>
+                    </select>
+                </p>
+
+                <p>Size: <input type="number" id="author_size" name="author_size" value="48" onchange="draw()">
+                </p>
+                <p>Text: <input type="text" id="author_text" name="author_text" onchange="draw()"></p>
+
+            </div>
+        </div>
+
+        <div class="section">
+            <button type="button" class="collapsible heading" id="genre_heading">
+                Genres
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white"
+                    class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white"
+                    class="bi bi-caret-up-fill hide" viewBox="0 0 16 16">
+                    <path
+                        d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                </svg>
+            </button>
+            <div class="content">
+                <div class="section">
+                    <button type="button" class="sub-collapsible subheading">
+                        Relationships
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                            class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                            class="bi bi-caret-up-fill hide" viewBox="0 0 16 16">
+                            <path
+                                d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                        </svg>
+                    </button>
+                    <div class="content" id="Relationships">
+                        <div class="section">
+                            <button type="button" class="sub-topic subheading">
+                                Community
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                                    class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                                    class="bi bi-caret-up-fill hide" viewBox="0 0 16 16">
+                                    <path
+                                        d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                                </svg>
+                            </button>
+                            <div class="content" id="Community">
+
+                            </div>
+                        </div>
+
+                        <div class="section">
+                            <button type="button" class="sub-topic subheading">
+                                Family
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                                    class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                                    class="bi bi-caret-up-fill hide" viewBox="0 0 16 16">
+                                    <path
+                                        d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                                </svg>
+                            </button>
+                            <div class="content" id="Family">
+
+                            </div>
+                        </div>
+
+                        <div class="section">
+                            <button type="button" class="sub-topic subheading">
+                                Romance
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                                    class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                                    class="bi bi-caret-up-fill hide" viewBox="0 0 16 16">
+                                    <path
+                                        d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                                </svg>
+                            </button>
+                            <div class="content" id="Romance">
+
+                            </div>
+                        </div>
+
+                        <div class="section">
+                            <button type="button" class="sub-topic subheading">
+                                School
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                                    class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                                    class="bi bi-caret-up-fill hide" viewBox="0 0 16 16">
+                                    <path
+                                        d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                                </svg>
+                            </button>
+                            <div class="content" id="School">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <button type="button" class="sub-collapsible subheading">
+                        Wellness
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                            class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                            class="bi bi-caret-up-fill hide" viewBox="0 0 16 16">
+                            <path
+                                d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                        </svg>
+                    </button>
+                    <div class="content" id="Wellness">
+                        <div class="section">
+                            <button type="button" class="sub-topic subheading">
+                                Covid-19
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                                    class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                                    class="bi bi-caret-up-fill hide" viewBox="0 0 16 16">
+                                    <path
+                                        d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                                </svg>
+                            </button>
+                            <div class="content" id="Covid-19">
+
+                            </div>
+                        </div>
+
+
+                        <div class="section">
+                            <button type="button" class="sub-topic subheading">
+                                Music
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                                    class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                                    class="bi bi-caret-up-fill hide" viewBox="0 0 16 16">
+                                    <path
+                                        d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                                </svg>
+                            </button>
+                            <div class="content" id="Music">
+
+                            </div>
+                        </div>
+
+                        <div class="section">
+                            <button type="button" class="sub-topic subheading">
+                                Self-care
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                                    class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                                    class="bi bi-caret-up-fill hide" viewBox="0 0 16 16">
+                                    <path
+                                        d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                                </svg>
+                            </button>
+                            <div class="content" id="Self-care">
+
+                            </div>
+                        </div>
+
+                        <div class="section">
+                            <button type="button" class="sub-topic subheading">
+                                Spirituality
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                                    class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                                    class="bi bi-caret-up-fill hide" viewBox="0 0 16 16">
+                                    <path
+                                        d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                                </svg>
+                            </button>
+                            <div class="content" id="Spirituality">
+
+                            </div>
+                        </div>
+
+                        <div class="section">
+                            <button type="button" class="sub-topic subheading">
+                                Sports
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                                    class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                                    class="bi bi-caret-up-fill hide" viewBox="0 0 16 16">
+                                    <path
+                                        d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                                </svg>
+                            </button>
+                            <div class="content" id="Sports">
+
+                            </div>
+                        </div>
+
+                        <div class="section">
+                            <button type="button" class="sub-topic subheading">
+                                Travel
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                                    class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                                    class="bi bi-caret-up-fill hide" viewBox="0 0 16 16">
+                                    <path
+                                        d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                                </svg>
+                            </button>
+                            <div class="content" id="Travel">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="column right">
+        <canvas id="canvas"></canvas>
+        <br>
+        <br>
+        <a id="download" download="promo.png">
+            <button id="dn_btn" type="button" onClick="download()">Download</button>
+        </a>
+    </div>
+    <script>
+        var font_files = ['Agreloy.ttf', 'AgreloyS1.ttf', 'Aka_Posse.ttf', 'Alhambra.TTF', 'Alpha_Wood.ttf', 'Among_Us.ttf', 'Ancient_Geek.ttf', 'Another_Typewriter.ttf', 'Anyk.ttf', 'Apex_Lake.otf', 'Aurora.ttf', 'Awesome_South_Korea.ttf', 'A_Abstract_Groovy.ttf', 'A_Agressive_Winter.ttf', 'a_Ahlan_Wasahlan.ttf', 'A_Alloy_Ink.ttf', 'a_Asian_Ninja.ttf', 'A_Avocado_Taco.ttf', 'a_Awal_Ramadhan.ttf', 'A_Barbeque_Grill.ttf', 'A_Yummy_Apology.TTF', 'Bakso_Sapi.otf', 'Because_I_am_Happy.ttf', 'Bloody.TTF', 'Broken_15.TTF', 'Broken_Glass.ttf', 'Budmo.ttf', 'Cactus_Sandwich.ttf', 'Cactus_Sandwich_Fill.ttf', 'Calm.ttf', 'Capture_it.ttf', 'Cavalier.ttf', 'Chentenario.otf', 'Cold_War.ttf', 'College.ttf', 'Compass.ttf', 'Cufis_Decor.ttf', 'Dancing_Vampyrish.ttf', 'DCC_Ash.otf', 'Demode_Capitals.ttf', 'Diogenes.ttf', 'Dirty_Ego.TTF', 'Doland.otf', 'Downcome.TTF', 'Earwig_Factory.ttf', 'Flamer.TTF', 'Fragment_Core.otf', 'Framed.ttf', 'Freshman.ttf', 'Futura_Handwritten.ttf', 'Gang_of_Three.ttf', 'Gecko_Lunch.ttf', 'Ghastly_Panic.ttf', 'Gogono_Cocoa_Mochi.ttf', 'Greek_House_Symbolized.ttf', 'Grid_Concrete.ttf', 'Gunplay.ttf', 'Harry_P.TTF', 'Heavy_Heap.ttf', 'HVD_Comic_Serif.otf', 'Ice_Caps.ttf', 'Jawadwipa_Adisastra.ttf', 'Jersey_Letters.ttf', 'Karate.ttf', 'Karma.ttf', 'Khodijah.ttf', 'Korean_Calligraphy.ttf', 'Kremlin.ttf', 'Madjoe.ttf', 'Marola.TTF', 'Mayan.ttf', 'MB_Think_Twice.ttf', 'Mexcellent.otf', 'Minangkabau.ttf', 'Minecraft_Evenings.ttf', 'Modusa.ttf', 'Mycuteballon.ttf', 'Nandaka_Western.ttf', 'Neon_Lights.ttf', 'Newspaper_Cutout.ttf', 'Norse.otf', 'No_Virus.ttf', 'Octagon.ttf', 'October_Crow.ttf', 'Oklahoma.ttf', 'Old_Newspaper_Types.ttf', 'Old_Stamper.ttf', 'Osaka_Sans_Serif.ttf', 'Pad_Thai.TTF', 'Parma_Initialen_MK.ttf', 'Penguin.ttf', 'Prisma.ttf', 'Riffic.ttf', 'Roman_SD.ttf', 'Roycroft_Initials.ttf', 'Saddlebag.ttf', 'Saiyan_Sans.ttf', 'Shadowed_Serif.TTF', 'Snowtop_Caps.otf', 'Sports_Jersey.ttf', 'Stanberry.ttf', 'Stencilia_A.ttf', 'Stencilia_Bold.ttf', 'Stereofidelic.ttf', 'Strawberry_Whipped_Cream.ttf', 'Super_Mario_256.ttf', 'Swistblnk_Monthoers.ttf', 'Taco_Box.TTF', 'Tatoo_Ink.TTF', 'Tiza.ttf', 'Top_Secret.ttf', 'Trajanus_Bricks.ttf', 'Trajanus_Bricks_Xtra.ttf', 'Troika.otf', 'Type_Keys.ttf', 'Type_Keys_Filled.ttf', 'Upakarti.ttf', 'Wash_Your_Hand.ttf', 'Wicked_Grit.ttf', 'Zombie.TTF'];
+        for (i = 0; i < font_files.length; i++) {
+            var styles = document.getElementsByTagName("style")[0];
+            styles.appendChild(document.createTextNode("\
+                @font-face {\
+                    font-family: " + font_files[i].substring(0, font_files[i].indexOf(".")) + ";\
+                    src: url('static/Fonts/" + font_files[i] + "');\
+                }\
+            "));
+            var options = document.createElement("option");
+            options.value = font_files[i].substring(0, font_files[i].indexOf("."));
+            options.innerText = font_files[i].substring(0, font_files[i].indexOf(".")).replaceAll("_", " ");
+            document.getElementById("title_style").appendChild(options);
+
+            var options2 = document.createElement("option");
+            options2.value = font_files[i].substring(0, font_files[i].indexOf("."));
+            options2.innerText = font_files[i].substring(0, font_files[i].indexOf(".")).replaceAll("_", " ");
+            document.getElementById("author_style").appendChild(options2);
+        }
+
+        var title_fonts = document.getElementById("title_style").getElementsByTagName("option");
+        var author_fonts = document.getElementById("author_style").getElementsByTagName("option");
+        for (i = 1; i < title_fonts.length; i++) {
+            title_fonts[i].style.fontFamily = title_fonts[i].value;
+            author_fonts[i].style.fontFamily = author_fonts[i].value;
+        }
+        var headings = document.getElementsByClassName("collapsible");
+        var content;
+        var sub_headings = document.getElementsByClassName("sub-collapsible");
+        var sub_heading = "";
+        var sub_topics = document.getElementsByClassName("sub-topic");
+        var sub_topic;
+        var back_btn = document.createElement("BUTTON");
+        back_btn.setAttribute("type", "button");
+        back_btn.id = "back";
+        var backNode = document.createTextNode("Back");
+        back_btn.appendChild(backNode);
+        var genre_btn = document.getElementById("genre_heading");
+        var arrows;
+        var icon_src = "";
+        for (i = 0; i < headings.length; i++) {
+            headings[i].addEventListener("click", function () {
+                for (j = 0; j < headings.length; j++) {
+                    if (headings[j].innerText.trim() === "Background" || headings[j].innerText.trim() === "Title" || headings[j].innerText.trim() === "Author") {
+                        headings[j].nextElementSibling.style.display = "none";
+                        headings[j].lastElementChild.classList.add("hide");
+                        headings[j].firstElementChild.classList.remove("hide");
+                    }
+                }
+
+                content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                    this.lastElementChild.classList.add("hide");
+                    this.firstElementChild.classList.remove("hide");
+                }
+
+                //show content
+                else {
+                    content.style.display = "block";
+                    this.firstElementChild.classList.add("hide");
+                    this.lastElementChild.classList.remove("hide");
+                }
+
+            });
+        }
+
+        for (i = 0; i < sub_headings.length; i++) {
+            sub_headings[i].addEventListener("click", function () {
+                console.log(this.innerText.trim());
+                sub_heading = this.innerText.trim();
+                for (j = 0; j < sub_headings.length; j++) {
+                    sub_headings[j].style.display = "none";
+                }
+
+                sub_topic = this.nextElementSibling;
+                sub_topic.style.display = "block";
+                genre_btn.parentNode.insertBefore(back_btn, genre_btn);
+                arrows = genre_btn.innerHTML.replace("Genres", "");
+                genre_btn.classList.add("shrink_genre");
+                genre_btn.innerHTML = "Genres > " + sub_heading + arrows;
+                back_btn.addEventListener("click", function () {
+                    for (j = 0; j < sub_headings.length; j++) {
+                        sub_headings[j].style.display = "block";
+                    }
+                    document.getElementById(sub_heading).style.display = "none";
+                    back_btn.remove();
+                    genre_btn.classList.remove("shrink_genre");
+                    genre_btn.innerHTML = "Genres" + arrows;
+                });
+            });
+        }
+
+        //Canvas: adjust height and width based on browser window size
+        var c = document.getElementById("canvas");
+        var ctx = c.getContext("2d");
+        ctx.canvas.width = window.innerWidth * 0.67;
+        ctx.canvas.height = window.innerWidth * 0.6;
+
+        var topic;
+
+        function draw() {
+            ctx.fillStyle = document.getElementById("bg").value;
+            ctx.fillRect(0, 0, c.width, c.height);
+            var title_style = document.getElementById("title_style").value;
+            ctx.fillStyle = document.getElementById("font_color").value;
+            var title_text = document.getElementById("title_text").value;
+            var title_size = document.getElementById("title_size").value;
+            ctx.font = title_size + "px " + title_style;
+            ctx.textAlign = "center";
+            ctx.fillText(title_text, c.width / 2, c.height / 6);
+
+            var author_style = document.getElementById("author_style").value;
+            ctx.fillStyle = document.getElementById("name_color").value;
+            var author_text = document.getElementById("author_text").value;
+            var author_size = document.getElementById("author_size").value;
+            ctx.font = author_size + "px " + author_style;
+            ctx.textAlign = "center";
+            ctx.fillText(author_text, c.width / 2, c.height * 5 / 6);
+
+            var icon = new Image();
+            icon.src = icon_src;
+            icon.onload = function () {
+                ctx.drawImage(icon, c.width / 3, c.height / 3, c.width / 3, c.height / 3);
+            }
+        }
+
+        function display_img(item, index) {
+            content = document.getElementById(topic);
+            content.style.display = "block";
+            var img_btn = document.createElement("BUTTON");
+            img_btn.setAttribute("style", "background-image: url(static/Images/" + topic + "/" + item + ")");
+            img_btn.classList = "img-btn";
+            img_btn.id = item.replace(".", ",");
+            content.append(img_btn);
+            img_btn.onclick = function () {
+                icon_src = "static/Images/" + topic + "/" + item;
+                draw();
+            }
+        }
+
+        var Relationships = {
+            "Community": ["bench.JPG", "earth.JPG", "street_lamp.JPG", "tree.JPG"],
+            "Family": ["refrigerator.JPG", "sofa.JPG", "TV.jpg"],
+            "Romance": ["ring.JPG", "rose.JPG"],
+            "School": ["compositionNotebook.JPG", "knitting.JPG", "pencil.JPG", "sewing.JPG"]
+        };
+        var Wellness = {
+            "Covid-19": ["covid.png", "kn95.png", "mask1.png"],
+            "Music": ["guitar.JPG", "microphone.png", "music1.png", "music2.png", "radiorebel.png"],
+            "Self-care": ["bath.JPG", "lipstick.JPG", "mirror.JPG"],
+            "Spirituality": ["candle.JPG"],
+            "Sports": ["baseball.png", "football.png", "soccer.png"],
+            "Travel": ["airplane.JPG", "mtaBus.JPG", "suitcase.png", "tent.JPG"]
+        };
+
+        var num_imgs = 0;
+        var img_btns = document.getElementsByClassName("img-btn");
+        for (i = 0; i < sub_topics.length; i++) {
+            sub_topics[i].addEventListener("click", function () {
+                topic = this.innerText.trim();
+                content = document.getElementById(topic);
+                content.style.display = "block";
+                content.style.overflow = "auto";
+                content.style.maxHeight = "90px";
+                var images = content.getElementsByTagName("button");
+                for (j = img_btns.length - 1; j >= 0; j--) {
+                    if (img_btns[j].parentElement.id.trim() !== topic) {
+                        img_btns[j].remove();
+                    }
+                }
+                for (j = 0; j < sub_topics.length; j++) {
+                    if (sub_topics[j].innerText.trim() !== topic) {
+                        sub_topics[j].firstElementChild.classList.remove("hide");
+                        sub_topics[j].lastElementChild.classList.add("hide");
+                    }
+                }
+                if (images.length > 0) {
+                    for (k = window[sub_heading][topic].length - 1; k >= 0; k--) {
+                        images[k].remove();
+                    }
+                    this.firstElementChild.classList.remove("hide");
+                    this.lastElementChild.classList.add("hide");
+                }
+                else {
+                    this.firstElementChild.classList.add("hide");
+                    this.lastElementChild.classList.remove("hide");
+                    window[sub_heading][topic].forEach(display_img);
+                }
+
+                back_btn.addEventListener("click", function () {
+                    for (j = 0; j < sub_topics.length; j++) {
+                        sub_topics[j].firstElementChild.classList.remove("hide");
+                        sub_topics[j].lastElementChild.classList.add("hide");
+                        topic = sub_topics[j].innerText.trim();
+                        content = document.getElementById(topic);
+                        var images = content.getElementsByTagName("button");
+                        if (images.length > 0) {
+                            for (k = window[sub_heading][topic].length - 1; k >= 0; k--) {
+                                images[k].remove();
+                            }
+                        }
+                    }
+                    back_btn.remove();
+                    var arrows = genre_btn.innerHTML.replace("Genres", "");
+                    genre_btn.classList.remove("shrink_genre");
+                    genre_btn.innerHTML = "Genres" + arrows;
+                    back_btn.remove();
+                });
+            });
+        }
+
+        var download = document.getElementById("download");
+        download.addEventListener("mouseover", function() {
+            download.style.backgroundColor = "rgb(221, 109, 127)";
+            document.getElementById("dn_btn").style.backgroundColor = "rgb(221, 109, 127)";
+        });
+
+        download.addEventListener("mouseout", function() {
+            download.style.backgroundColor = "rgb(253, 184, 180)";
+            document.getElementById("dn_btn").style.backgroundColor = "rgb(253, 184, 180)";
+        })
+        function download() {
+            var download = document.getElementById("download");
+            var image = document.getElementById("canvas").toDataURL("image/png").replace("image/png", "image/octet-stream");
+            download.setAttribute("href", image);
+        }
+
+    </script>
+</body>
+
+</html>
