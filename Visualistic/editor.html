@@ -766,7 +766,8 @@
         download.addEventListener("mouseout", function() {
             download.style.backgroundColor = "rgb(253, 184, 180)";
             document.getElementById("dn_btn").style.backgroundColor = "rgb(253, 184, 180)";
-        })
+        });
+        
         function download() {
             var download = document.getElementById("download");
             var image = document.getElementById("canvas").toDataURL("image/png").replace("image/png", "image/octet-stream");
