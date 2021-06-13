@@ -176,13 +176,11 @@
         }
 
         #download {
-            background-color: rgb(253, 184, 180);
             color: black;
-            height: 50px;
-            padding: 15px;
             display: flex;
             justify-content: center;
             cursor: pointer;
+            text-decoration: none;
         }
 
         #dn_btn {
@@ -192,6 +190,9 @@
             font-weight: bold;
             font-size: 20px;
             cursor: pointer;
+            width: 100%;
+            margin: 0;
+            height: 50px;
         }
     </style>
 </head>
@@ -742,12 +743,12 @@
 
         var Activism = {
             "Empowerment": ["hands.png"],
-            "Feminism": ["feminism1.png"]
+            "Feminism": ["feminism1.png", "femword.png"]
         };
         var Relationships = {
             "Community": ["bench.JPG", "earth.JPG", "street_lamp.JPG", "tree.JPG"],
             "Family": ["refrigerator.JPG", "sofa.JPG", "TV.jpg"],
-            "Romance": ["ring.JPG", "rose.JPG"],
+            "Romance": ["chocolateBox.png","ring.JPG", "rose.JPG"],
             "School": ["compositionNotebook.JPG", "knitting.JPG", "pencil.JPG", "sewing.JPG"]
         };
         var Wellness = {
@@ -756,7 +757,7 @@
             "Self-care": ["bath.JPG", "lipstick.JPG", "mirror.JPG"],
             "Spirituality": ["candle.JPG"],
             "Sports": ["baseball.png", "football.png", "soccer.png"],
-            "Travel": ["airplane.JPG", "mtaBus.JPG", "suitcase.png", "tent.JPG", "whitePlane.png"]
+            "Travel": ["airplane.JPG", "grayplane.png", "mtaBus.JPG", "suitcase.png", "tent.JPG", "whitePlane.png"]
         };
 
         var num_imgs = 0;
@@ -817,12 +818,10 @@
 
         var download = document.getElementById("download");
         download.addEventListener("mouseover", function () {
-            download.style.backgroundColor = "rgb(221, 109, 127)";
             document.getElementById("dn_btn").style.backgroundColor = "rgb(221, 109, 127)";
         });
 
         download.addEventListener("mouseout", function () {
-            download.style.backgroundColor = "rgb(253, 184, 180)";
             document.getElementById("dn_btn").style.backgroundColor = "rgb(253, 184, 180)";
         });
 
